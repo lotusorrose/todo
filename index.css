@@ -1,0 +1,23 @@
+.status1{
+    background-color:#fafafa;
+    
+}
+.status2{
+    background-color: lemonchiffon;
+    color:seagreen
+}
+.status3{
+    background-color: seagreen;
+    color:paleturquoise;
+}
+.card{
+    padding-left: 10px;
+    padding-top: 8px;
+    margin-bottom: 3px;
+}
+.container{
+    padding-top: 10px;
+}
+.card-title .material-icons-outlined{
+    cursor: pointer;
+}
