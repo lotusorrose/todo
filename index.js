@@ -58,7 +58,7 @@ let template=`
 <div class='card {{statusclass}}'>
     <div class='card-title' dataid={{taskid}}>
         <div class='row'>
-            <div class='col-9'>{{taskname}}</div>
+            <div class='col-8 col-sm-9'>{{taskname}}</div>
             <div class='col-1'><span class='material-icons-outlined' title='{{icon1title}}'>{{icon1}}</span></div>
             <div class='col-1'><span class='material-icons-outlined' title='{{icon2title}}'>{{icon2}}</span></div>
             <div class='col-1'><span class='material-icons-outlined' title='{{icon3title}}'>{{icon3}}</span></div>
