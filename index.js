@@ -126,5 +126,5 @@ let getTask=(task,status)=>{
         icon3="delete"
         icon3title='Delete'
     }
-    return Mustache.render(template,{"statusclass":"status"+status,"taskname":task.name,"icon1":icon1,"icon2":icon2,"icon3":icon3, "taskid":task.id});
+    return Mustache.render(template,{"statusclass":"status"+status,"taskname":task.name,"icon1":icon1,"icon2":icon2,"icon3":icon3, "taskid":task.id,"icon1title":icon1title,"icon2title":icon2title,"icon3title":icon3title});
 }
