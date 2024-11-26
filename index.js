@@ -128,3 +128,15 @@ let getTask=(task,status)=>{
     }
     return Mustache.render(template,{"statusclass":"status"+status,"taskname":task.name,"icon1":icon1,"icon2":icon2,"icon3":icon3, "taskid":task.id,"icon1title":icon1title,"icon2title":icon2title,"icon3title":icon3title});
 }
+
+Sortable.create(tasklist, { animation: 500, group: 'list-1', handle: '.card-title', onEnd: function (/**Event*/evt) {
+    tasks=[];
+    $.each($("#tasklist .card"), function(index,obj){
+        var task={}
+        task.name=$(obj).find(".col-8").text()
+        task.id=$(obj).children(".card-title").attr("dataid");
+        task.status=$(obj).hasClass("status1")?1:$(obj).hasClass("status2")?2:3;
+        tasks.push(task);
+    })
+    refreshTasks()
+} });
