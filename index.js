@@ -38,7 +38,34 @@ $(()=>{
             setNextAction(dataid, STATUS_INPROGRESS);
         }
         refreshTasks();
-    })
+    })    
+    $("#tasklist").on("click", ".col-8, .col-sm-9", function(e) {
+        let $nameDiv = $(this);
+        
+        if ($nameDiv.find('input').length > 0) return;
+
+        let currentName = $nameDiv.text();
+        let parentCard = $nameDiv.closest('.card-title');
+        let taskId = parentCard.attr('dataid');
+        let $input = $("<input type='text' class='edit-task-input' />").val(currentName).css("width","100%");
+
+        $nameDiv.html($input);
+        $input.focus();
+
+        $input.on("blur keyup", function(ev) {
+            if (ev.type === 'blur' || (ev.type === 'keyup' && ev.keyCode === 13)) {
+                let newName = $input.val().trim();
+                if (newName !== "") {
+                    
+                    for(let t of tasks){
+                        if (t.id == taskId) t.name=newName;
+                    }
+                    localStorage.setItem("tasks", JSON.stringify(tasks));
+                }
+                refreshTasks();
+            }
+        });
+    });
     refreshTasks();
 })
 let setNextAction = (dataid,nextStatus) => {
