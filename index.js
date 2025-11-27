@@ -18,7 +18,7 @@ $(()=>{
         task.name=$("#newTask").val();
         task.id=new Date().getTime();
         task.status=STATUS_PENDING;
-        tasks.push(task);
+        tasks.unshift(task);
         $("#newTask").val("");
         $("#newTask").focus();
         refreshTasks()
@@ -38,7 +38,8 @@ $(()=>{
             setNextAction(dataid, STATUS_INPROGRESS);
         }
         refreshTasks();
-    })    
+    })
+    
     $("#tasklist").on("click", ".col-8, .col-sm-9", function(e) {
         let $nameDiv = $(this);
         
@@ -66,11 +67,16 @@ $(()=>{
             }
         });
     });
+
     refreshTasks();
 })
 let setNextAction = (dataid,nextStatus) => {
-    let tsk=tasks.filter((task)=>{return task.id==dataid})
-    tsk[0].status=nextStatus;
+    const idx = tasks.findIndex(task => task.id == dataid);
+    if (idx > -1) {
+        tasks[idx].status = nextStatus;
+        const [moved] = tasks.splice(idx, 1);
+        tasks.unshift(moved); // move updated task to the front so it renders at the top of its section
+    }
 }
 let deleteTask=(dataid)=>{
     let newTasks=[];
